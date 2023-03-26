@@ -1,0 +1,40 @@
+<div class = "container w-auto">
+  <div class="page-title">
+    <h4>予約済み一覧</h4>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>画像</th>
+        <th>施設名</th>
+        <th>紹介文</th>
+        <th>合計金額</th>
+        <th>チェックイン</th>
+        <th>チェックアウト</th>
+        <th>人数</th>
+        <th>作成日</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @reservations.each do |reservation| %>
+    <% room = Room.find(reservation.room_id)%>
+    <% day = reservation.checkout - reservation.checkin %>
+    <% days = day.to_i %>
+    <% cost = room.price * days * reservation.numberpeople %>
+    <tr>
+      <td class="w-25"><%= image_tag room.image.blank? ? 'default-image' : room.image.url ,class: "w-100"%></td>
+      <td><%= room.name%></td>
+      <td><%= room.introduction%></td>
+      <td><%= cost %></td>
+      <td><%= reservation.checkin %></td>
+      <td><%= reservation.checkout %></td>
+      <td><%= reservation.numberpeople %></td>
+      <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+
+</div>

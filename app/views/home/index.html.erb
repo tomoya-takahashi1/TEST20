@@ -1,0 +1,37 @@
+<h1>Homeindex</h1>
+<header>        
+<%= render "shared/header" %>
+</header>
+
+<div class="top-container">
+  <div class="container">
+    <h1 class="title">ReserveRoomで<br>まだ体験したことのない<br>旅をしよう</h1>
+    <div class="search">
+      <%= form_with url: rooms_path,method: :get, local: true do |f| %>
+        <%= f.text_field :search_area, placeholder: "エリア名を入力",class: "form-control top_text_field"%>
+        <%= f.submit "検索" ,class: "btn top_button"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class ="area-container">
+  <h3>おすすめのエリア</h3>
+  <div class="area">
+    <div class="tokyo-area">
+      <%= link_to "・東京", controller:"rooms", actions:"index", search_area: "東京"%>
+    </div>
+    <div class="osaka-area btn-prime">
+      <%= link_to "・大阪", controller:"rooms", actions:"index", search_area: "大阪"%>
+    </div>
+    <div class="kyoto-area ">
+      <%= link_to "・京都", controller:"rooms", actions:"index", search_area: "京都"%>
+    </div>
+    <div class="sapporo">
+      <%= link_to "・札幌", controller:"rooms", actions:"index", search_area: "札幌"%>
+    </div>
+  </div>
+</div>
+
+   
+   
+

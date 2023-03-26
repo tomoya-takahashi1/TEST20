@@ -1,0 +1,25 @@
+<nav class="navbar">
+   <h4><a class="navber-brand" href="/">Potepan share<a></h4>
+   <div class="header-container d-flex justify-content-end">
+   <% if user_signed_in? %>
+       <%= image_tag current_user.profile_image_id.blank? ? 'default-avatar' : current_user.image.url, class: "img-account img-field img-circle"%>
+       <li class="nav-item dropdown d-block">
+         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
+           <%= current_user.name %>
+         </a>
+         <div class="dropdown-menu dropdown-menu-right">
+           <a class="dropdown-item" href="/rooms/new">施設の新規登録</a>
+           <%= link_to "予約一覧",reservations_path,class: "dropdown-item"%>
+           <a class="dropdown-item" href="/rooms/own">登録済み一覧</a>
+           <%= link_to "アカウント設定", user_path(current_user), class: "dropdown-item" %>
+           <%= link_to "ログアウト" ,destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+         </div>
+       </li>
+     </div>
+   <% else %>
+       <%= link_to "ログイン",new_user_session_path, class: "btn btn-primary mr-3"%>
+       <%= link_to "新規登録",new_user_registration_path,class: "btn btn-secondary"%>
+     
+   <% end %>
+   </div>
+ </nav>
