@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
       
         def create
           @user = User.find(current_user.id)
+         
           @room =  Room.new(params.require(:room).permit(:name,:introduction,:price,:user_id,:address,:image))
           if @room.save
             flash[:success] = "施設を登録しました"

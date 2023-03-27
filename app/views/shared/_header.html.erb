@@ -2,7 +2,7 @@
    <h4><a class="navber-brand" href="/">Potepan share<a></h4>
    <div class="header-container d-flex justify-content-end">
    <% if user_signed_in? %>
-       <%= image_tag current_user.profile_image_id.blank? ? 'default-avatar' : current_user.image.url, class: "img-account img-field img-circle"%>
+       <%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url, class: "img-account img-field img-circle"%>
        <li class="nav-item dropdown d-block">
          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuLink">
            <%= current_user.name %>

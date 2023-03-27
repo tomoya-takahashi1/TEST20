@@ -23,7 +23,7 @@
     <% days = day.to_i %>
     <% cost = room.price * days * reservation.numberpeople %>
     <tr>
-      <td class="w-25"><%= image_tag room.image.blank? ? 'default-image' : room.image.url ,class: "w-100"%></td>
+      <td class="w-25"><%= image_tag room.profile_image_id.blank? ? 'default-image' : room.image.url ,class: "w-100"%></td>
       <td><%= room.name%></td>
       <td><%= room.introduction%></td>
       <td><%= cost %></td>

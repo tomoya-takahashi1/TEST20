@@ -70,3 +70,6 @@ gem 'carrierwave'
 
 #画像のリサイズ
 gem 'mini_magick'
+
+#デバックツール
+gem 'pry-rails'

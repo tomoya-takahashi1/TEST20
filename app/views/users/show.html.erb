@@ -1,4 +1,6 @@
-
+<header>        
+<%= render "shared/header" %>
+</header>
       <body>
       <div class="container">
       <h2>設定</h2>
@@ -13,7 +15,7 @@
           </div>
           <div class="account-info-group">
             <label class="account-label">アイコン画像</label>
-            <p class="account-value"><%= current_user.profile_image_id %></p>
+            <p class="account-value"><%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url %></p>
           </div>
           <div class="account-info-group">
             <label class="account-label">名前</label>

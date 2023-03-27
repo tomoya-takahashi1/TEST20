@@ -3,8 +3,16 @@
 </div>
 
 <div class="room-show container">
-
-  
+binding.pry
+<%= image_tag @room.image.blank? ? 'default-image.png' : @room.image.url ,class: "show-img"%>
+<%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url, class: "img-account img-field img-circle"%>
+    <div class="show-body">
+    <div class="name-price">
+    <p class="show-name"><%= @room.name %></p>
+    <p class="show-price">¥<%= number_to_currency(@room.price,precision: 0) %>~</p>
+  </div>
+  <p class="show-address"><%= @room.address %></p>
+  <p class="show-intro"><%= @room.introduction %></p>
  
    
   <%if user_signed_in?%>
@@ -54,29 +62,10 @@
 </div>
 
 <body>
-<div class = "container w-auto">
-  <div class="page-title mt-2">
-    <h4>登録済み一覧</h4>
-  </div>
-  <table class="table align-middle OwnRoomsTable">
-    <thead>
-      <tr>
-        <th>画像</th>
-        <th>施設名</th>
-        <th>住所</th>
-        <th>紹介文</th>
-        <th>料金</th>
-        <th>作成日</th>
-        <th></th>
-      </tr>
-    </thead>
+
 
     
-</table>
 
 </div>
-<% @users.each do |user| %>
-  <%= attachment_image_tag user, :profile_image, fallback: "no-image.png" %>
-  <%= user.name %>
-<% end %>
+
 </body>
