@@ -2,70 +2,16 @@
  <%= link_to "← 戻る",:back, class: "back-link "%>
 </div>
 
-<div class="room-show container">
-binding.pry
-<%= image_tag @room.image.blank? ? 'default-image.png' : @room.image.url ,class: "show-img"%>
-<%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url, class: "img-account img-field img-circle"%>
-    <div class="show-body">
-    <div class="name-price">
-    <p class="show-name"><%= @room.name %></p>
-    <p class="show-price">¥<%= number_to_currency(@room.price,precision: 0) %>~</p>
-  </div>
-  <p class="show-address"><%= @room.address %></p>
-  <p class="show-intro"><%= @room.introduction %></p>
- 
-   
-  <%if user_signed_in?%>
-    <div class="reservation-form">
-      <%= form_with model:@reservation, url: reservation_path do |f|%>
-      <div>
-        <%= f.label :checkin,"チェックイン" ,class: "form-label"%>
-        <%= f.date_field :checkin, class:"form-control"%>
-      </div>
-      <div>
-        <%= f.label :checkout,"チェックアウト",class: "form-label"%>
-        <%= f.date_field :checkout , class:"form-control"%>
-      </div>
-      <div>
-        <%= f.label :numberpeople,"人数",class: "form-label"%>
-        <%= f.number_field :numberpeople ,min: 1, class:"form-control"%>
-      </div>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      
-      <div class = "w-100 mt-2 pr-3 d-flex justify-content-end">
-        <%= f.submit "送信", class:"btn btn-primary ml-1"%>
-      </div>
-      <% end %>
-    </div>
-  </div>
-  <% else %>
-  <div class="reservation-form">
-      <%= form_with model:@reservation, url: confirm_reservation_path do |f|%>
-      <div>
-        <%= f.label :checkin,"チェックイン" ,class: "form-label"%>
-        <%= f.date_field :checkin, class:"form-control"%>
-      </div>
-      <div>
-        <%= f.label :checkout,"チェックアウト",class: "form-label"%>
-        <%= f.date_field :checkout , class:"form-control"%>
-      </div>
-      <div>
-        <%= f.label :numberpeople,"人数",class: "form-label"%>
-        <%= f.number_field :numberpeople ,min: 1, class:"form-control"%>
-      </div>
-      <div class = "w-100 mt-2 pr-3 d-flex justify-content-end">
-        <%=link_to "ログイン", new_user_session_path,class:"btn btn-primary ml-1"%>
-      </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
 
 <body>
+<div class="room-show container">
+
+
+ 
 
 
     
 
-</div>
+
 
 </body>

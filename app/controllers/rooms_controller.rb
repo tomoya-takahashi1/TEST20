@@ -10,31 +10,42 @@ class RoomsController < ApplicationController
       
         end
       
-        def own
-          @rooms = Room.where(user_id: current_user.id)
-        end
-        
         def new
-          @user = User.find(current_user.id)
           @room = Room.new
         end
       
         def create
-          @user = User.find(current_user.id)
+          
          
-          @room =  Room.new(params.require(:room).permit(:name,:introduction,:price,:user_id,:address,:image))
+          @room =  Room.new(params.require(:room).permit(:name,:introduction,:price,:address,:image))
+          @room.user_id = current_user.id
+          
+
           if @room.save
+            
             flash[:success] = "施設を登録しました"
             redirect_to "/rooms/own"
           else
+            
             flash[:warning] = "施設の登録に失敗しました"
             render "rooms/new"
           end
         end
       
+
+
+        def own
+          @rooms = Room.where(user_id: current_user.id)
+        end
+
+        def destroy
+          @room = Room.find(params[:id])
+          @room.destroy
+          flash[:success] = "施設を削除しました"
+          redirect_to "/rooms/own"
+        end
+      
         def show
-          
-          
           if user_signed_in?
             @user = User.find(current_user.id)
           end
@@ -56,13 +67,13 @@ class RoomsController < ApplicationController
             render "rooms/edit"
           end
         end
+
+        private
+  def rooms_params
+    params.require(:room).permit(name,:address,:introduction,:price,:address,:image,:user_id)
+  end
       
-        def destroy
-          @room = Room.find(params[:id])
-          @room.destroy
-          flash[:success] = "施設を削除しました"
-          redirect_to "/rooms/own"
-        end
+        
       
 end
 #@reservation = Reservation.new 35行目@room= Room.find(params[:id])
