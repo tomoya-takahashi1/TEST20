@@ -3,8 +3,19 @@
         def index
           @reservations = Reservation.where(user_id: current_user.id)
         end
+
+        def new
+          binding.pry
+          @reservation = Reservation.new
+          @reservations = Reservation.all
+          @reservations = Room.where(user_id: current_user.id)
+          binding.pry
+          render  "reservations/confirm"
+         
+        end
       
         def confirm
+          binding.pry
           @reservation = Reservation.new(params.require(:reservation).permit(:checkin,:checkout,:user_id,:room_id,:numberpeople))
           @room = Room.find(@reservation.room_id)
           @user = User.find(current_user.id)
@@ -32,6 +43,17 @@
           @room = Room.find(@reservation.room_id)
           @user = User.find(@reservation.user_id)
           render "/rooms/show"
+        end
+
+        def show
+          binding.pry
+          
+          @reservation = Reservation.new
+          @reservation.user_id = current_user.id
+          @reservation = Reservation.new(params.require(:reservation).permit(:checkin,:checkout,:user_id,:room_id,:numberpeople))
+          binding.pry
+          render "/reservations/confirm"
+          
         end
       end
 

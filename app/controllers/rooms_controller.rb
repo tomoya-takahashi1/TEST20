@@ -12,11 +12,12 @@ class RoomsController < ApplicationController
       
         def new
           @room = Room.new
+        
         end
       
         def create
           
-         
+          
           @room =  Room.new(params.require(:room).permit(:name,:introduction,:price,:address,:image))
           @room.user_id = current_user.id
           
@@ -24,7 +25,7 @@ class RoomsController < ApplicationController
           if @room.save
             
             flash[:success] = "施設を登録しました"
-            redirect_to "/rooms/own"
+            render  "rooms/show"
           else
             
             flash[:warning] = "施設の登録に失敗しました"
@@ -46,19 +47,20 @@ class RoomsController < ApplicationController
         end
       
         def show
-          if user_signed_in?
-            @user = User.find(current_user.id)
-          end
+          @user = current_user
+          @room = Room.find(params[:id])
+          @reservation = reservation.new
+          
         end
       
         def edit
           @room = Room.find(params[:id])
-          @user = User.find(current_user.id)
+          @room.user_id = current_user.id
         end
       
         def update
           @room = Room.find(params[:id])
-          @user = User.find(current_user.id)
+          @room.user_id = current_user.id
           if @room.update(params.require(:room).permit(:name,:introduction,:price,:user_id,:address,:image))
             flash[:success] = "施設を編集しました"
             redirect_to "/rooms/own"

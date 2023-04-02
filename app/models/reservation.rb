@@ -9,10 +9,15 @@ class Reservation < ApplicationRecord
     belongs_to :user
   
     def start_end_check
-      if (self.checkin != nil && self.checkout != nil)
-        errors.add(:checkout, "はチェックインより後に登録してください") unless
-        self.checkin < self.checkout
+        if self.checkout < self.checkin
+         errors.add(:checkout, "は開始日より前の日付は登録できません。") 
+        end
       end
-    end
+  
+      def startday
+        return if checkin.blank?
+        errors.add(:checkin, "は今日以降のものを選択してください") if start < Date.today
+      end
+
   end
    

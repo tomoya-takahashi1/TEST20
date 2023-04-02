@@ -1,17 +1,68 @@
-<div class="back container">
- <%= link_to "← 戻る",:back, class: "back-link "%>
-</div>
+
 
 
 <body>
-<div class="room-show container">
-
-
- 
+<div class="back container">
+ <%= link_to "← 戻る",:back, class: "back-link "%>
+</div>
+<div class = "container w-auto">
+  <div class="page-title mt-2">
+    <h4>登録済み一覧</h4>
+</div>
 
 
     
+<table>
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @room.address %></td>
+  </tr>
+  <th>詳細</th>
+    <td><%= @room.introduction %></td>
+  </tr>
+  <th>値段</th>
+    <td><%= @room.price %></td>
+  </tr>
+  <th>画像</th>
+  <td class="w-25"><%= image_tag @room.image.blank? ? 'default-image.png' : room.image.url ,class: "w-100"%></td>
+  </tr>
+</table>
 
 
+<%= form_with model: @reservation do |f| %>
+  <table>            
+  
+  <tr>
+    <th><%= f.label :start ,"チェックイン" %></th>
+    <td><%= f.date_select :checkin %></td>
+  </tr>
 
+  <tr>
+  <th><%= f.label :finish ,"チェックアウト" %></th>
+  <td><%= f.date_select :checkout %></td>
+  
+  </tr> 
+  <th>
+  <%= f.label :numberpeople,"人数",class: "form-label"%>
+  <%= f.number_field :numberpeople ,min: 1, class:"form-control"%>
+  </th>
+  
+  
+    
+</table>
+<%= f.hidden_field :room_id, value: @room.id %>
+<div>
+     <ul>
+       <li><%= f.submit "投稿を完了する"%></li>
+     </ul>
+</div>
+
+
+<% end %>
 </body>
+
+

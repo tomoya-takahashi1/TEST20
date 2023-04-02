@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2023_03_29_052032) do
     t.date "checkout"
     t.integer "user_id"
     t.integer "room_id"
+    t.integer "numberpeople"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
