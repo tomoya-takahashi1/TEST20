@@ -1,4 +1,7 @@
 <body>
+<header>        
+<%= render "shared/header" %>
+</header>
 <div class = "container w-auto">
   <div class="page-title mt-2">
     <h4>登録済み一覧</h4>
@@ -18,8 +21,7 @@
 
     <tbody>
     <% @rooms.each do |room| %>
-    <tr>
-      <td class="w-25"><%= image_tag room.image.blank? ? 'default-image' : room.image.url ,class: "w-100"%></td>
+      <td class="w-25"><%= image_tag room.image.blank? ? 'default-image.png' : room.image.url ,class: "w-100"%></td>
       <td><%= link_to "#{room.name}",room,method: :get,class: "text-primary"%></td>
       <td><%= room.address %></td>
       <td><%= room.introduction %></td>
@@ -30,7 +32,10 @@
       <div class="dropdown-menu">
         <a class="dropdown-item text-primary" href="/rooms/<%= room.id %>/edit">編集</a>
         <%= link_to "削除",room, method: :delete, data: { confirm: "本当に削除しますか？" },class: "dropdown-item text-primary" %>
+      
+        <%= button_to "削除する", room, data: { confirm: "本当によろしいですか？" }, method: :delete, class: "dropdown-item text-primary" %>
       </div>
+        
       </td>
     </tr>
   </tr>
@@ -38,5 +43,4 @@
 </tbody>
 </table>
 
-</div>
 </body>
