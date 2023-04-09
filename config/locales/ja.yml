@@ -8,3 +8,7 @@ ja:
          email: メールアドレス
          password: パスワード 
          profile: 一言紹介
+       reservation:
+        checkin: チェックイン
+        checkout: チェックアウト
+        numberpeople: 人数

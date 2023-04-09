@@ -13,8 +13,11 @@ Rails.application.routes.draw do
       get 'own' #own.html.erbにルーティング
     end
   end
-  resources :reservations
+  resources :reservations do
+    member do
+      post 'confirm', to: 'reservations#confirm'
+    end
   
-  
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

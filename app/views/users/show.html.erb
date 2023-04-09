@@ -1,21 +1,20 @@
 <header>        
 <%= render "shared/header" %>
 </header>
-      <body>
-      <div class="container">
+  <body>
+    <div class="container">
       <h2>設定</h2>
       <div class="user-container">
         <ul class="side-navigation">
-          <%= link_to "編集(名前)", edit_user_path(@user), class: "button is-primary" %>
-          <%= link_to "編集(和スワード)",   edit_registration_path(@user), class: "button is-primary" %>
+          <%= link_to "アカウント", edit_user_path(@user), class: "button is-primary" %>
+          <%= link_to "プロフィール編集",   edit_registration_path(@user), class: "button is-primary" %>
         </ul>
         <div class="account-info">
           <div class="account-title">
             <h2>アカウント</h2>
           </div>
           <div class="account-info-group">
-            <label class="account-label">アイコン画像</label>
-            <p class="account-value"><%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url %></p>
+            <label class="account-label">アイコン画像</label><p class="account-value"><%= image_tag current_user.profile_image_id.blank? ? 'no-image.png' : current_user.profile_image_id.url %></p>
           </div>
           <div class="account-info-group">
             <label class="account-label">名前</label>
@@ -36,10 +35,7 @@
         </div>
       </div>
     </div>
-    </body>
-
-
-
+</body>
 
 
 

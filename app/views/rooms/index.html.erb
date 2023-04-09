@@ -1,12 +1,20 @@
+<header>        
+<%= render "shared/header" %>
+</header>
+
+
+
 <div class="index-form">
     <%= form_with url: rooms_path,method: :get, local: true do |f| %>
       <%= f.text_field :search_area, placeholder: "エリア名を入力",class: "form-group"%>
+      
       <%= f.text_field :search_keyword, placeholder: "キーワードを入力",class: "form-group"%>
       <%= f.submit "検索" ,class: "btn btn-primary"%>
     <% end %>
   </div>
   <p class="data-count"><%= @rooms.count%>件見つかりました。</p>
   <ul class ="room-list">
+
     <% @rooms.each do |room| %>
     <li class="room">
       <%= image_tag room.image.blank? ? 'default-image' : room.image.url, class: "room-img"%>
