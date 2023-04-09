@@ -3,9 +3,10 @@
 <%= render "shared/header" %>
 </header>
 
+
 <div class="top-container">
   <div class="container">
-    <h1 class="title">Potepan shareで<br>まだ体験したことのない<br>旅をしよう</h1>
+    <h1 class="title">Potepanshareで<br>まだ体験したことのない<br>旅をしよう</h1>
     <div class="search">
       <%= form_with url: rooms_path,method: :get, local: true do |f| %>
         <%= f.text_field :search_area, placeholder: "エリア名を入力",class: "form-group"%>
