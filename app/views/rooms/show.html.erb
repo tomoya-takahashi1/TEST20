@@ -9,7 +9,7 @@
   </div>
 <div class = "container w-auto">
     <div class="page-title mt-2">
-      <h4>登録済み一覧</h4>
+      
     <%= render "shared/error", obj: @reservation %>
 </div>
   
@@ -33,7 +33,7 @@
   </tr>
   <th>画像</th>
   <td class="w-25"><%= image_tag @room.image.blank? ? 'default-image.png' : @room.image.url ,class: "w-100"%></td>
-  
+
  </table>
 
 
@@ -59,7 +59,7 @@
     <%= f.hidden_field :room_id, value: @room.id %>
   <div>
        <ul>
-         <li><%= f.submit "投稿を完了する"%></li>
+         <li><%= f.submit "予約する"%></li>
        </ul>
   </div>
 
